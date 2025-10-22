@@ -1,11 +1,11 @@
 <template>
   <div class="conversation-list">
     <div
-      class="item border-gray-300 border-t curser-pointer bg-white hover:bg-gray-200 p-2"
-      v-for="item in items"
+      class="item border-gray-300 border-t cursor-pointer bg-white hover:bg-gray-200 p-2"
+      v-for="item in props.conversationHistory"
       :key="item.id"
     >
-      <a href="#">
+      <a @click.prevent="goToConversation(item.id)">
         <div
           class="flex justify-between items-center text-sm leading-5 text-gray-500"
         >
@@ -21,25 +21,16 @@
 </template>
 
 <script setup>
-const items = [
-  {
-    id: 1,
-    selectedModel: "Conversation 1",
-    title: "Hello1",
-    updatedAt: "10:00 AM",
+import { useRouter } from "vue-router";
+
+let router = useRouter();
+let props = defineProps({
+  conversationHistory: {
+    type: Array,
+    required: true,
   },
-  {
-    id: 1,
-    selectedModel: "Conversation 2",
-    title: "Hello2",
-    updatedAt: "10:00 AM",
-  },
-  {
-    id: 1,
-    selectedModel: "Conversation 3",
-    title:
-      "Hello3q arwawr awrsegfawrae  ewarfawr Request Autofill.setAddresses faile",
-    updatedAt: "10:00 AM",
-  },
-];
+});
+const goToConversation = (id) => {
+  router.push({ path: `/conversation/${id}` });
+};
 </script>

@@ -6,7 +6,7 @@ import ConversationView from "../views/Coversation.vue";
 const routes = [
   { path: "/", component: HomeView },
   { path: "/settings", component: SettingsView },
-  { path: "/conversation", component: ConversationView },
+  { path: "/conversation/:id", component: ConversationView },
 ];
 const router = createRouter({
   history: createMemoryHistory(),
